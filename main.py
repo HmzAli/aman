@@ -4,20 +4,25 @@ import storage
 from alias import Alias
 from exceptions import (
     AliasNotFoundError,
-    AliasExistsError
+    AliasExistsError,
+    InvalidAliasError,
 )
 
 class Manager():
-    def __init__(self, aliases=None):
-        self.aliases = storage.load_aliases()
+    def __init__(self):)
+        for name, value in storage.load_aliases():
+            self.aliases.append(Alias(name, value))
 
     def add(self, name, value):
         self.aliases.append(Alias(name, value))
 
         self.save()
 
-    def edit(self, name='', value=''):
+    def edit(self, name, value):
+        if not value:
+            raise InvalidAliasError
         alias = self.get_alias(name)
+
         if alias:
             self.alias.value = value
 
