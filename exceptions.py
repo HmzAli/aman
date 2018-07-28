@@ -11,3 +11,6 @@ class AliasNotFoundError(Error):
     def __init__(self, message):
         self.message = message
 
+class InvalidAliasValue(Error):
+    def __init__(self, message):
+        self.message = message

@@ -1,5 +1,6 @@
 """ Aliases are managed here"""
 
+import storage
 from alias import Alias
 from exceptions import (
     AliasNotFoundError,
@@ -8,7 +9,7 @@ from exceptions import (
 
 class Manager():
     def __init__(self, aliases=None):
-        self.aliases = []
+        self.aliases = storage.load_aliases()
 
     def add(self, name, value):
         self.aliases.append(Alias(name, value))
@@ -16,18 +17,18 @@ class Manager():
         self.save()
 
     def edit(self, name='', value=''):
-        alias = get_alias(name)
+        alias = self.get_alias(name)
         if alias:
             self.alias.value = value
 
         self.save()
 
-    def modify(self, old_name, new_name):
-        existing_alias = get_alias(new_name)
+    def modify(self, current_name, new_name):
+        existing_alias = self.get_alias(new_name)
         if existing_alias:
-            return False
+            raise AliasExistsError
 
-        alias = get_alias(name)
+        alias = self.get_alias(current_name)
         alias.name = new_name
 
         self.save()
