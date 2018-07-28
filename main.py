@@ -1,11 +1,14 @@
 """ Aliases are managed here"""
+
 from alias import Alias
+from exceptions import (
+    AliasNotFoundError,
+    AliasExistsError
+)
 
 class Manager():
     def __init__(self, aliases=None):
         self.aliases = []
-        # Get from file
-        self.aliases = aliases
 
     def add(self, name, value):
         self.aliases.append(Alias(name, value))
@@ -42,7 +45,7 @@ class Manager():
         try:
             return list(filter(lambda a: a.name == name, self.aliases))[0]
         except IndexError:
-            return None
+            raise AliasNotFoundError
 
     def save(self):
         """ Saves to file"""
