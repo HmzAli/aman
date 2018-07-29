@@ -1,18 +1,22 @@
 """ This modules handles storing and retrieval of aliases from a file"""
 
+import re
 import config
 
 def load_aliases():
-    raw_alias_strs = []
+    alias_pairs = []
     with open(config.AMAN_ALIAS_FILE) as f:
-       raw_alias_strs = extract_aliases(f.readlines())
-    """ Reads aliases pattern from a file. Creates a tuble of key value pairings"""
-    return ()
+        alias_pairs = extract_aliases(f.readlines(), regex=config.ALIAS_DEFINITION_REGEX)
+    return alias_pairs
 
-def extract_aliases(lines):
-   """ Finds shell alias definition patterns """
-   # get aliases using regex
-   pass
+def extract_aliases(lines, regex=r''):
+    """ Finds shell alias definition patterns """
+    alias_pairs = []
+    for line in lines:
+        m = re.match(regex, line)
+        if m:
+            alias_pairs.append(m.groups())
+    return alias_pairs
 
 def save_aliases():
     """ Write aliases to a file """
