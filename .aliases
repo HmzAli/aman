@@ -1,0 +1,3 @@
+alias listhome="ls ~"
+alias showpyfunctions="cat *.py | grep 'def'"
+alias zzz="systemctl suspend"
