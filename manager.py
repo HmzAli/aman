@@ -47,9 +47,8 @@ class Manager():
 
         self.save()
 
-    def list_all(self):
-        for a in self.aliases:
-            print('{0}="{1}"'.format(a.name, a.value))
+    def get_all(self):
+        return [(alias.name, alias.value) for alias in self.aliases]
 
     def get_alias(self, name):
         try:
