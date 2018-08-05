@@ -18,8 +18,7 @@ def load_aliases():
 def save_aliases(alias_pairs):
     """ Write aliases to a file """
     lines = []
-    with open(config.AMAN_ALIAS_FILE, 'a') as f:
+    with open(config.AMAN_ALIAS_FILE, 'w') as f:
         for name, value in alias_pairs:
             lines.append(config.ALIAS_SAVING_FORMAT.format(name=name, value=value))
         f.writelines(lines)
-    pass
