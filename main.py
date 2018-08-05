@@ -44,7 +44,7 @@ class Manager():
           self.aliases.remove(alias)
 
     def list_all(self):
-        for (a in self.aliases):
+        for a in self.aliases:
             print('{0}={2}'.format(a.name, a.value))
 
     def get_alias(name):
