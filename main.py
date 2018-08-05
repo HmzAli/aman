@@ -43,6 +43,8 @@ class Manager():
         if alias:
           self.aliases.remove(alias)
 
+        self.save()
+
     def list_all(self):
         for a in self.aliases:
             print('{0}={2}'.format(a.name, a.value))
@@ -54,6 +56,6 @@ class Manager():
             raise AliasNotFoundError
 
     def save(self):
-        """ Saves to file"""
+        storage.save_aliases([(alias.name, alias.value) for alias in self.aliases])
         pass
 
