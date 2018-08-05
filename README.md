@@ -1,4 +1,5 @@
 # aman
-A simple, easy to use alias manager.
+A simple alias manager for shell lovers.
 
-Still under construction...
+*USAGE*
+`aman <alias-name>='<value>'`
