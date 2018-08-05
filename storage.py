@@ -1,4 +1,4 @@
-""" This modules handles storing and retrieval of aliases from a file"""
+''' This module handles storing and retrieval of aliases from a file'''
 
 import re
 import config

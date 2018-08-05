@@ -1,16 +1,13 @@
-""" Exceptions for alias manager"""
+''' Exceptions for alias manager'''
 
 class Error(Exception):
     pass
 
 class AliasExistsError(Error):
-    def __init__(self, message):
-        self.message = message
+    self.message = 'Alias already exists'
 
 class AliasNotFoundError(Error):
-    def __init__(self, message):
-        self.message = message
+    self.message = 'Alias not found'
 
-class InvalidAliasValue(Error):
-    def __init__(self, message):
-        self.message = message
+class InvalidAliasValueError(Error):
+    self.message = 'Invalid alias value'

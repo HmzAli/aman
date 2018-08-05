@@ -1,4 +1,4 @@
-""" Aliases are managed here"""
+''' Aliases are managed here'''
 
 import storage
 from alias import Alias
@@ -6,11 +6,12 @@ from alias import Alias
 from exceptions import (
     AliasNotFoundError,
     AliasExistsError,
-    InvalidAliasError,
+    InvalidAliasValueError,
 )
 
 class Manager():
     def __init__(self):
+        self.aliases = []
         for name, value in storage.load_aliases():
             self.aliases.append(Alias(name, value))
 
@@ -25,7 +26,7 @@ class Manager():
         alias = self.get_alias(name)
 
         if alias:
-            self.alias.value = value
+            alias.value = value
 
         self.save()
 
@@ -40,7 +41,7 @@ class Manager():
         self.save()
 
     def delete(self, name):
-        alias = get_alias(name)
+        alias = self.get_alias(name)
         if alias:
           self.aliases.remove(alias)
 
@@ -48,9 +49,9 @@ class Manager():
 
     def list_all(self):
         for a in self.aliases:
-            print('{0}={2}'.format(a.name, a.value))
+            print('{0}="{1}"'.format(a.name, a.value))
 
-    def get_alias(name):
+    def get_alias(self, name):
         try:
             return list(filter(lambda a: a.name == name, self.aliases))[0]
         except IndexError:
@@ -59,4 +60,3 @@ class Manager():
     def save(self):
         storage.save_aliases([(alias.name, alias.value) for alias in self.aliases])
         pass
-
