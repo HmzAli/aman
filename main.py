@@ -2,6 +2,7 @@
 
 import storage
 from alias import Alias
+
 from exceptions import (
     AliasNotFoundError,
     AliasExistsError,
@@ -9,7 +10,7 @@ from exceptions import (
 )
 
 class Manager():
-    def __init__(self):)
+    def __init__(self):
         for name, value in storage.load_aliases():
             self.aliases.append(Alias(name, value))
 
