@@ -5,4 +5,4 @@ A simple alias manager for shell lovers.
 
 ```aman <alias-name>='<value>'```
 
-*still work in progress...
+*still work in progress...*
