@@ -1,4 +1,11 @@
-AMAN_ALIAS_FILE = '.aliases'
+import os
+
+# Storage file settings
+HOME_DIR = os.getenv('HOME')
+FILE_NAME = '.aliases'
+FILE_PATH = '{}/.aman/{}'.format(HOME_DIR, FILE_NAME)
+
+# CLI settings
 HELP_TEXT = 'Alias manager for shell lovers'
 USAGE_TEXT = '''
 
