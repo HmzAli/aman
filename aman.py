@@ -12,15 +12,25 @@ ALIAS_NAME = r'([\w_-]+)'
 ALIAS_VALUE = r'(.+)'
 
 # Valid command regex
-ADD = r'^'+ALIAS_NAME+'='+ALIAS_VALUE # Edit command follows the same syntax. If alias exists, it's edited in place
-DELETE = r'^delete '+ALIAS_NAME
+# Edit command follows the same syntax as ADD. If alias exists, it's edited in place
+ADD = r'^'+ALIAS_NAME+'='+ALIAS_VALUE
+DELETE = r'^rm '+ALIAS_NAME
 LIST = r'^list$'
 
-HELP_TEXT = 'Alias manager for shell users'
-USAGE_TEXT = '\n<name>="<value>"'
+HELP_TEXT = 'Alias manager for shell lovers'
+USAGE_TEXT = '''USAGE:
+
+  To add / edit an alias: 
+  <name>="<value"
+
+  list       List all aliases
+  rm         Remove an alias
+  --help     Show help
+  --version  Show version number'''
 
 def execute(args_str):
 	if args_str == '--help' or not args_str:
+		print('{}\n\n{}'.format(HELP_TEXT, USAGE_TEXT))
 		return
 
 	for cmd, fn in functions.items():
