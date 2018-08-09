@@ -6,35 +6,20 @@ import re
 
 from manager import Manager
 from exceptions import AliasNotFoundError
+from config import HELP_TEXT, USAGE_TEXT, COLORS
 
 manager = Manager()
 
-# Valid command parameters
+# Valid command regex
 ALIAS_NAME = r'([\w_-]+)'
 ALIAS_VALUE = r'(.+)'
-
-# Valid command regex
-# Edit command follows the same syntax as ADD. If alias exists, it's edited in place
 ADD = r'^'+ALIAS_NAME+'='+ALIAS_VALUE
 DELETE = r'^rm '+ALIAS_NAME
 LIST = r'^(list|ls)$'
 
-HELP_TEXT = 'Alias manager for shell lovers'
-USAGE_TEXT = '''
-
-USAGE:
-
-  To add / edit an alias: 
-  <name>="<value"
-
-  list       List all aliases
-  rm         Remove an alias
-  --help     Show help
-  --version  Show version number'''
-
 def execute(args_str):
 	if args_str == '--help' or not args_str:
-		print('{}{}'.format(HELP_TEXT, USAGE_TEXT))
+		default('{}{}'.format(HELP_TEXT, USAGE_TEXT))
 		return
 
 	for cmd, fn in functions.items():
@@ -44,7 +29,7 @@ def execute(args_str):
 			return
 
 	error('Invalid command: {}'.format(args_str.split(' ')[0]))
-	print(USAGE_TEXT)
+	default(USAGE_TEXT)
 
 def add_alias(match):
 	name = match.group(1)
@@ -54,13 +39,14 @@ def add_alias(match):
 		alias = manager.get_alias(name)
 	except AliasNotFoundError:
 		manager.add(name, value)
+		success('Alias added successfully.')
 	else:
 		action = prompt('Alias already exists. Edit? (y/n): ');
-
-	if not action in 'yn':
-		error('Invalid option: {}'.format(action))
-	elif action == 'y':
-		manager.edit(name, value)
+		if not action in 'yn':
+			error('Invalid option: {}'.format(action))
+		elif action == 'y':
+			manager.edit(name, value)
+			success('Alias updated.')
 
 def delete_alias(match):
 	name = match.group(1)
@@ -70,7 +56,7 @@ def list_aliases(*args):
 	aliases = manager.get_all()
 
 	for alias in aliases:
-		print(' {} = "{}"'.format(alias.name, alias.value))
+		success('{} {:<30} -> {}'.format(COLORS['SUCCESS'], alias.name, alias.value))
 
 def prompt(message):
 	if sys.version_info.major == 3:
@@ -79,8 +65,14 @@ def prompt(message):
 		action = raw_input(message)
 	return action
 
-def error(message):
+def default(message):
 	print(message)
+
+def success(message):
+	print('{}{}\033[1;m'.format(COLORS['SUCCESS'], message))
+
+def error(message):
+	print('{}{}\033[1;m'.format(COLORS['ERROR'], message))
 
 functions = {
 	ADD: add_alias,
