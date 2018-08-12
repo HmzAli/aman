@@ -10,6 +10,7 @@ A simple alias manager for shell lovers.
 ```shell
 source $HOME/.aman/aliases
 ```
+4. Open a new shell session and type `aman` to verify installation
 
 #### USAGE
 
