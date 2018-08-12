@@ -1,7 +1,7 @@
 ''' This module handles storing and retrieval of aliases from a file'''
 
 import re
-import config
+from . import config
 
 ALIAS_DEFINITION_REGEX = r'\s*alias (\w+)=[\'\"](.+)[\'\"]'
 ALIAS_SAVING_FORMAT = '\nalias {name}="{value}"'

@@ -1,12 +1,11 @@
-#!/usr/bin/env python3
 ''' Alias manager for users of Unix shells'''
 
 import sys
 import re
 
-from manager import Manager
-from exceptions import AliasNotFoundError
-from config import HELP_TEXT, USAGE_TEXT, COLORS
+from .manager import Manager
+from .exceptions import AliasNotFoundError
+from .config import HELP_TEXT, USAGE_TEXT, COLORS
 
 manager = Manager()
 
@@ -17,7 +16,7 @@ ADD = r'^'+ALIAS_NAME+'='+ALIAS_VALUE
 DELETE = r'^rm '+ALIAS_NAME
 LIST = r'^(list|ls)$'
 
-def execute(args_str):
+def main(args_str):
 	if args_str == '--help' or not args_str:
 		default('{}{}'.format(HELP_TEXT, USAGE_TEXT))
 		return
@@ -79,4 +78,4 @@ functions = {
 	DELETE: delete_alias,
 	LIST: list_aliases
 }
-execute(' '.join(sys.argv[1:]))
+main(' '.join(sys.argv[1:]))

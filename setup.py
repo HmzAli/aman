@@ -6,5 +6,5 @@ setup(
     packages=['aman',],
     license='MIT',
     long_description=open('README.md').read(),
-    scripts=['test.py']
+    scripts=['bin/aman']
 )

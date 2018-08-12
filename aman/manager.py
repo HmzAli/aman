@@ -1,9 +1,9 @@
 ''' Aliases are managed here'''
 
-import storage
-from alias import Alias
+from . import storage
+from .alias import Alias
 
-from exceptions import (
+from .exceptions import (
     AliasNotFoundError,
     AliasExistsError,
     InvalidAliasValueError,
