@@ -2,7 +2,7 @@ import os
 
 # Storage file settings
 HOME_DIR = os.getenv('HOME')
-FILE_NAME = '.aliases'
+FILE_NAME = 'aliases'
 FILE_PATH = '{}/.aman/{}'.format(HOME_DIR, FILE_NAME)
 
 # CLI settings
