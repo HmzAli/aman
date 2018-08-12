@@ -2,6 +2,7 @@
 
 import sys
 import re
+import pkg_resources
 
 from .manager import Manager
 from .exceptions import AliasNotFoundError
@@ -19,6 +20,10 @@ LIST = r'^(list|ls)$'
 def main(args_str):
 	if args_str == '--help' or not args_str:
 		default('{}{}'.format(HELP_TEXT, USAGE_TEXT))
+		return
+
+	if args_str == '--version':
+		default(pkg_resources.get_distribution('aman').version)
 		return
 
 	for cmd, fn in functions.items():
