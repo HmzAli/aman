@@ -21,3 +21,5 @@ aman <alias-name>='<value>'
 
 For more commands, type `--help`.
 
+##### NOTE:
+After adding an alias, you will need to create a new shell session for it to be activated.
