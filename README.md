@@ -7,7 +7,9 @@ A simple alias manager for shell lovers.
 2. cd into the repo `cd aman` and run `python setup.py`
 3. After the installation is completed, add the following line to your `bashrc` if you are using bash, or `zshrc` if using zsh, or to whatever startup script file correpsonds to your default shell:
 
-```source $HOME/.aman/aliases```
+```shell
+source $HOME/.aman/aliases
+```
 
 #### USAGE
 
