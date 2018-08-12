@@ -4,6 +4,7 @@ import os
 
 setup(
     name='Aman',
+    author='Hamza Ali'
     version='1.0',
     packages=['aman',],
     license='MIT',
