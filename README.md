@@ -1,5 +1,5 @@
 # aman
-A simple alias manager for shell lovers.
+A simple tool to manager shell aliases
 
 #### INSTALLATION
 
@@ -16,7 +16,7 @@ source $HOME/.aman/aliases
 
 To add an alias:
 ```shell
-aman <alias-name>='<value>'
+aman <alias>=<command>
 ```
 
 For more commands, type `--help`.

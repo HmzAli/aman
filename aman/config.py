@@ -6,13 +6,13 @@ FILE_NAME = 'aliases'
 FILE_PATH = '{}/.aman/{}'.format(HOME_DIR, FILE_NAME)
 
 # CLI settings
-HELP_TEXT = 'Alias manager for shell lovers'
+HELP_TEXT = 'Shell alias manager'
 USAGE_TEXT = '''
 
 USAGE:
 
-  To add / edit an alias: 
-  <name>="<value"
+  To add / edit an alias:
+  <name>=<command>
 
   list       List all aliases
   rm         Remove an alias
