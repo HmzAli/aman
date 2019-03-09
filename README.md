@@ -1,5 +1,5 @@
 # aman
-A simple tool to manager shell aliases
+A simple tool to manage shell aliases
 
 #### INSTALLATION
 
@@ -23,3 +23,5 @@ For more commands, type `--help`.
 
 ##### NOTE:
 After adding an alias, you will need to create a new shell session for it to be activated.
+
+
