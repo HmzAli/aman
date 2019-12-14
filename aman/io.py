@@ -1,6 +1,6 @@
 import sys
 
-from config import COLORS
+from .config import COLORS
 
 def prompt(message):
     if sys.version_info.major == 3:
