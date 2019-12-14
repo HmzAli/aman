@@ -1,6 +1,12 @@
 import re
+import pkg_resources
+
 from .manager import Manager
 from .exceptions import AliasNotFoundError
+from .config import HELP_TEXT, USAGE_TEXT
+from .io import success, error, default, prompt
+
+manager = Manager()
 
 def exec_command(cmd_str):
     ''' Checks if the command is valid and executes its corresponding operation
@@ -12,26 +18,43 @@ def exec_command(cmd_str):
             bool: True if the command is valid. False otherwise
     '''
 
-    # Valid command regex
+    # Regex for a valid alias definition pattern
     ALIAS_NAME = r'([\w_-]+)'
     ALIAS_VALUE = r'(.+)'
+
+    # Regex for valid commands
+    HELP = '--help'
+    VERSION = '--version'
     ADD = r'^'+ALIAS_NAME+'='+ALIAS_VALUE
     DELETE = r'^rm '+ALIAS_NAME
     LIST = r'^(list|ls)$'
 
+    if not cmd_str:
+        show_help()
+        return
+
     operations = {
+        HELP: show_help,
+        VERSION: show_version,
         ADD: add_alias,
         DELETE: delete_alias,
         LIST: list_aliases
     }
 
     for cmd, op in operations.items():
-        match = re.match(cmd, args_str)
+        match = re.match(cmd, cmd_str)
         if match:
             op(match)
-            return True
+            return
 
-    return False
+    error('Invalid command: {}'.format(cmd_str.split(' ')[0]))
+    default(USAGE_TEXT)
+
+def show_help():
+    default('{}{}'.format(HELP_TEXT, USAGE_TEXT))
+
+def show_version():
+    default(pkg_resources.get_distribution('aman').version)
 
 def add_alias(match):
     name = match.group(1)
@@ -56,8 +79,7 @@ def delete_alias(match):
 
 def list_aliases(*args):
     aliases = manager.get_all()
-
+    message = ''
     for alias in aliases:
-        success('{} {:<30} -> {}'.format(COLORS['SUCCESS'], alias.name, alias.value))
-
-manager = Manager()
+        message = message + '\n{:<30} -> {}'.format(alias.name, alias.value)
+    success(message)
