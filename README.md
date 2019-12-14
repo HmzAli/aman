@@ -19,6 +19,11 @@ To add an alias:
 aman <alias>=<command>
 ```
 
+For chained commands, wrap the commands in double quotes:
+```shell
+aman <alias>="<command1> && <command2>...<commandn>"
+```
+
 For more commands, type `--help`.
 
 ##### NOTE:
