@@ -1,4 +1,5 @@
 ''' Alias manager for Unix shells'''
+import sys
 
 from .operations import exec_command
 
