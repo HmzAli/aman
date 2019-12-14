@@ -11,8 +11,11 @@ USAGE_TEXT = '''
 
 USAGE:
 
-    To add / edit an alias:
+    To add / edit an alias to a single command:
     <name>=<command>
+
+    For chained commands:
+    <name>="command1 && command2 || command3"
 
     list       List all aliases
     rm         Remove an alias
