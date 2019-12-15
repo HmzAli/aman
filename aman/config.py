@@ -2,8 +2,10 @@ import os
 
 # Storage file settings
 HOME_DIR = os.getenv('HOME')
+DIR = '.aman'
 FILE_NAME = 'aliases'
-FILE_PATH = '{}/.aman/{}'.format(HOME_DIR, FILE_NAME)
+ALIAS_DIR_PATH = '{}/{}'.format(HOME_DIR, DIR)
+ALIAS_FILE_PATH = '{}/{}'.format(ALIAS_DIR_PATH, FILE_NAME)
 
 # CLI settings
 HELP_TEXT = 'Shell alias manager'
@@ -24,5 +26,6 @@ USAGE:
 
 COLORS = {
     'SUCCESS': '\033[0;32m',
-    'ERROR': '\033[0;31m'
+    'ERROR': '\033[0;31m',
+    'INFO': '\033[0;33m'
 }

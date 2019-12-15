@@ -17,3 +17,6 @@ def success(message):
 
 def error(message):
     print('{}{}\033[1;m'.format(COLORS['ERROR'], message))
+
+def info(message):
+    print('{}{}\033[1;m'.format(COLORS['INFO'], message))
